@@ -1,11 +1,10 @@
-// Firebase Authentication import
+
 import { createUserWithEmailAndPassword } from
     "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import { auth } from "./firebase.js";
 
 
-// Registration form
 const registrationForm =
     document.getElementById("registrationForm");
 
@@ -16,9 +15,6 @@ registrationForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
 
-    // =========================
-    // GET INPUT VALUES
-    // =========================
 
     const name =
         document.getElementById("name").value.trim();
@@ -36,9 +32,6 @@ registrationForm.addEventListener("submit", async function (event) {
         document.getElementById("username").value.trim();
 
 
-    // =========================
-    // ERROR ELEMENTS
-    // =========================
 
     const nameError =
         document.getElementById("nameError");
@@ -56,7 +49,7 @@ registrationForm.addEventListener("submit", async function (event) {
         document.getElementById("usernameError");
 
 
-    // Purane errors clear
+   
     nameError.textContent = "";
     emailError.textContent = "";
     passwordError.textContent = "";
@@ -67,9 +60,6 @@ registrationForm.addEventListener("submit", async function (event) {
     let isValid = true;
 
 
-    // =========================
-    // NAME VALIDATION
-    // =========================
 
     const namePattern = /^[A-Za-z ]+$/;
 
@@ -89,9 +79,7 @@ registrationForm.addEventListener("submit", async function (event) {
     }
 
 
-    // =========================
-    // EMAIL VALIDATION
-    // =========================
+ 
 
 const emailPattern =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -112,9 +100,6 @@ const emailPattern =
     }
 
 
-    // =========================
-    // PASSWORD VALIDATION
-    // =========================
 const passwordPattern =
     /^(?=.*[A-Za-z])(?=.*\d).+$/;
 
@@ -134,10 +119,6 @@ const passwordPattern =
     }
 
 
-    // =========================
-    // MOBILE VALIDATION
-    // =========================
-
     const mobilePattern = /^[0-9]{10}$/;
 
     if (mobile === "") {
@@ -156,9 +137,6 @@ const passwordPattern =
     }
 
 
-    // =========================
-    // USERNAME VALIDATION
-    // =========================
 
     // Alphanumeric + maximum one special character
     const usernamePattern =
@@ -180,9 +158,6 @@ const passwordPattern =
     }
 
 
-    // =========================
-    // FIREBASE REGISTRATION
-    // =========================
 
     if (isValid) {
 
@@ -209,8 +184,6 @@ const passwordPattern =
             );
 
 
-            // User information temporarily save
-            // kar rahe hain profile page ke liye
             const userData = {
 
                 name: name,
@@ -233,7 +206,7 @@ const passwordPattern =
             );
 
 
-            // Profile page par bhejna
+        
             window.location.href =
                 "profile.html";
 
@@ -243,9 +216,6 @@ const passwordPattern =
             console.log(error);
 
 
-            // =========================
-            // FIREBASE ERRORS
-            // =========================
 
             if (
                 error.code ===

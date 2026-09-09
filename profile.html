@@ -114,19 +114,18 @@
 
     <script type="module">
 
-        // Firebase Auth import
+     
         import { signOut } from
             "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         import { auth } from "./firebase.js";
 
 
-        // Saved user data lena
+  
         const savedData =
             localStorage.getItem("userData");
 
 
-        // Agar user data nahi hai
         if (!savedData) {
 
          window.location.href = "index.html";
@@ -137,7 +136,7 @@
                 JSON.parse(savedData);
 
 
-            // Details display karna
+           
             document.getElementById("profileName").textContent =
                 userData.name;
 
@@ -155,7 +154,7 @@
         }
 
 
-        // Logout
+      
 document.getElementById("logoutBtn")
     .addEventListener("click", async function () {
 
