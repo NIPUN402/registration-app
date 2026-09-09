@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .profile-box {
+            background: white;
+            width: 100%;
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-box h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 25px;
+        }
+
+        .user-detail {
+            margin-bottom: 18px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .user-detail strong {
+            display: block;
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .user-detail span {
+            color: #222;
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        #logoutBtn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #e63946;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #logoutBtn:hover {
+            background: #c92f3b;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="profile-box">
+
+            <h1>Registration Details</h1>
+
+
+            <div class="user-detail">
+                <strong>Name</strong>
+                <span id="profileName"></span>
+            </div>
+
+
+            <div class="user-detail">
+                <strong>Email</strong>
+                <span id="profileEmail"></span>
+            </div>
+
+
+            <div class="user-detail">
+                <strong>Password</strong>
+                <span id="profilePassword"></span>
+            </div>
+
+
+            <div class="user-detail">
+                <strong>Mobile Number</strong>
+                <span id="profileMobile"></span>
+            </div>
+
+
+            <div class="user-detail">
+                <strong>Username</strong>
+                <span id="profileUsername"></span>
+            </div>
+
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script type="module">
+
+        // Firebase Auth import
+        import { signOut } from
+            "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        import { auth } from "./firebase.js";
+
+
+        // Saved user data lena
+        const savedData =
+            localStorage.getItem("userData");
+
+
+        // Agar user data nahi hai
+        if (!savedData) {
+
+         window.location.href = "index.html";
+
+        } else {
+
+            const userData =
+                JSON.parse(savedData);
+
+
+            // Details display karna
+            document.getElementById("profileName").textContent =
+                userData.name;
+
+            document.getElementById("profileEmail").textContent =
+                userData.email;
+
+            document.getElementById("profilePassword").textContent =
+                userData.password;
+
+            document.getElementById("profileMobile").textContent =
+                userData.mobile;
+
+            document.getElementById("profileUsername").textContent =
+                userData.username;
+        }
+
+
+        // Logout
+document.getElementById("logoutBtn")
+    .addEventListener("click", async function () {
+
+        try {
+
+            await signOut(auth);
+
+            localStorage.removeItem("userData");
+
+            alert("Logout successful!");
+
+            window.location.href = "./index.html";
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Logout failed.");
+        }
+
+    });
+    </script>
+
+</body>
+
+</html>
